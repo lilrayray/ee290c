@@ -1,0 +1,18 @@
+Package FFT
+
+import Chisel._
+import Node._
+
+
+
+
+Class shortbutter (x1: Sint, x2: Sint, radix: Int){
+
+val y1 := x1+x2
+val y2 := x1-x2
+
+
+}
+
+
+
