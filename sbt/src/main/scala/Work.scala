@@ -11,7 +11,15 @@ object Work {
     val poo = 16
     val params = (poo).toInt
 
-    val res = chiselMainTest( args.slice(1, args.length), () => Module ( new modN(params) ) ) {
-      c => new modNtest(c) }
+
+    // these two lines are for doing the modN. comment out one or other depening on which you are testing
+    //val res = chiselMainTest( args.slice(1, args.length), () => Module ( new modN(params) ) ) {
+    //  c => new modNtest(c) }
+
+    //these two lines are for doing the butterfly 
+    val res = chiselMainTest( args.slice(1, args.length), () => Module ( new radix2345 ) ) {
+      c => new radix2345test(c) }
+
+
   } 
 }   
