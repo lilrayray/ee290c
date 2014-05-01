@@ -17,8 +17,14 @@ object Work {
     //  c => new modNtest(c) }
 
     //these two lines are for doing the butterfly 
-    val res = chiselMainTest( args.slice(1, args.length), () => Module ( new radix2345 ) ) {
-      c => new radix2345test(c) }
+    //val res = chiselMainTest( args.slice(1, args.length), () => Module ( new radix2345 ) ) {
+    //  c => new radix2345test(c) }
+
+
+
+    //these two are for the twiddle lut
+    val res = chiselMainTest( args.slice(1, args.length), () => Module ( new twiddleLUT ) ) {
+      c => new twiddleLUTtest(c) }
 
 
   } 
