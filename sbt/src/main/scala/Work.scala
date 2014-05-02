@@ -8,7 +8,7 @@ object Work {
     // Parse parameters
     //val p = """-params_(.*)_(.*)_(.*)""".r.findFirstMatchIn(args(0))
     //require(p.isDefined, "First argument must be -param_k_l_r where k and l are Int and r is a Double")
-    val poo = 16
+    val poo = 1024
     val params = (poo).toInt
 
 
@@ -23,7 +23,7 @@ object Work {
 
 
     //these two are for the twiddle lut
-    val res = chiselMainTest( args.slice(1, args.length), () => Module ( new twiddleLUT ) ) {
+    val res = chiselMainTest( args.slice(1, args.length), () => Module ( new twiddleLUT(params) ) ) {
       c => new twiddleLUTtest(c) }
 
 
