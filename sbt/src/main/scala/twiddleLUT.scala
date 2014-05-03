@@ -176,11 +176,11 @@ io.t5_4out := twiddle5_4(io.in5)
 class twiddleLUTtest (c: twiddleLUT) extends Tester (c) {
 
 
-poke(c.io.in4, 2)
+poke(c.io.in4, 266)
 
-poke(c.io.in5, 2)
+poke(c.io.in5, 3)
 
-poke(c.io.in3, 2)
+poke(c.io.in3, 25)
 
 //poke(c.io.x4.imag, x4_imag)
 
