@@ -12,7 +12,9 @@ import scala.math._
 
 class twiddleLUT (tscale: Int) extends Module {
 val io = new Bundle {
-  val in = UInt(INPUT, 4)
+  val in4 = UInt(INPUT, 10)
+  val in5 = UInt(INPUT, 10)
+  val in3 = UInt(INPUT, 10)
   val t4_1out = new Complex(SInt(width = 16),SInt(width = 16)).asOutput
   val t4_2out = new Complex(SInt(width = 16),SInt(width = 16)).asOutput
   val t4_3out = new Complex(SInt(width = 16),SInt(width = 16)).asOutput
@@ -37,22 +39,22 @@ val t5length = max5power/5
 
 
 val one = new Complex(SInt(1,width = 16),SInt(0,width = 16))
-val negone = new Complex(SInt(0,width = 16),SInt(-1,width = 16)) //make sure to put this back to -1!!!!!
+val negone = new Complex(SInt(0,width = 16),SInt(-1,width = 16))  
 
-val lutarray41 = new Array [Complex] (4)  //replace with t4length
-val lutarray42 = new Array [Complex] (4)  //replace with t4length
-val lutarray43 = new Array [Complex] (4)  //replace with t4length
+val lutarray41 = new Array [Complex] (t4length)  
+val lutarray42 = new Array [Complex] (t4length)  
+val lutarray43 = new Array [Complex] (t4length)  
 
-val lutarray51 = new Array [Complex] (4)  //replace with t5length
-val lutarray52 = new Array [Complex] (4)  //replace with t5length
-val lutarray53 = new Array [Complex] (4)  //replace with t5length
-val lutarray54 = new Array [Complex] (4)  //replace with t5length
+val lutarray51 = new Array [Complex] (t5length)  
+val lutarray52 = new Array [Complex] (t5length)  
+val lutarray53 = new Array [Complex] (t5length)  
+val lutarray54 = new Array [Complex] (t5length)  
 
-val lutarray31 = new Array [Complex] (4)  //replace with t3length
-val lutarray32 = new Array [Complex] (4)  //replace with t3length
+val lutarray31 = new Array [Complex] (t3length)  
+val lutarray32 = new Array [Complex] (t3length)  
 
 
-for (k <- 0 until 4) {  //replace with t4length
+for (k <- 0 until t4length) {  
 
   val exp = k*2*Pi/max2power
   val coe1 = tscale*cos(exp)
@@ -80,12 +82,11 @@ for (k <- 0 until 4) {  //replace with t4length
 
 }
 
-val twiddle4_1 = Vec( (0 until 4).map(x => lutarray41(x)))  //replace with t4length
-val twiddle4_2 = Vec( (0 until 4).map(x => lutarray42(x)))  //replace with t4length
-val twiddle4_3 = Vec( (0 until 4).map(x => lutarray43(x)))  //replace with t4length
+val twiddle4_1 = Vec( (0 until t4length).map(x => lutarray41(x)))  
+val twiddle4_2 = Vec( (0 until t4length).map(x => lutarray42(x)))  
+val twiddle4_3 = Vec( (0 until t4length).map(x => lutarray43(x)))  
 
-
-for (k <- 0 until 4) {
+for (k <- 0 until t3length) {
 
   val exp = k*2*Pi/max3power
   val coe1 = tscale*cos(exp)
@@ -108,11 +109,11 @@ for (k <- 0 until 4) {
 }
 
 
-val twiddle3_1 = Vec( (0 until 4).map(x => lutarray31(x)))  //replace with t3length
-val twiddle3_2 = Vec( (0 until 4).map(x => lutarray32(x)))  //replace with t3length
+val twiddle3_1 = Vec( (0 until t3length).map(x => lutarray31(x)))  
+val twiddle3_2 = Vec( (0 until t3length).map(x => lutarray32(x)))  
 
 
-for (k <- 0 until 4) {   //replace with t5
+for (k <- 0 until t5length) {   
 
   val exp = k*2*Pi/max5power
   val coe1 = tscale*cos(exp)
@@ -144,22 +145,22 @@ for (k <- 0 until 4) {   //replace with t5
 
 }
 
-val twiddle5_1 = Vec( (0 until 4).map(x => lutarray51(x)))  //replace with t4length
-val twiddle5_2 = Vec( (0 until 4).map(x => lutarray52(x)))  //replace with t4length
-val twiddle5_3 = Vec( (0 until 4).map(x => lutarray53(x)))  //replace with t4length
-val twiddle5_4 = Vec( (0 until 4).map(x => lutarray54(x)))  //replace with t4length
+val twiddle5_1 = Vec( (0 until t5length).map(x => lutarray51(x)))  
+val twiddle5_2 = Vec( (0 until t5length).map(x => lutarray52(x)))  
+val twiddle5_3 = Vec( (0 until t5length).map(x => lutarray53(x)))  
+val twiddle5_4 = Vec( (0 until t5length).map(x => lutarray54(x)))  
 
 
 
-io.t4_1out := twiddle4_1(io.in)
-io.t4_2out := twiddle4_2(io.in)
-io.t4_3out := twiddle4_3(io.in)
-io.t3_1out := twiddle3_1(io.in)
-io.t3_2out := twiddle3_2(io.in)
-io.t5_1out := twiddle5_1(io.in)
-io.t5_2out := twiddle5_2(io.in)
-io.t5_3out := twiddle5_3(io.in)
-io.t5_4out := twiddle5_4(io.in)
+io.t4_1out := twiddle4_1(io.in4)
+io.t4_2out := twiddle4_2(io.in4)
+io.t4_3out := twiddle4_3(io.in4)
+io.t3_1out := twiddle3_1(io.in3)
+io.t3_2out := twiddle3_2(io.in3)
+io.t5_1out := twiddle5_1(io.in5)
+io.t5_2out := twiddle5_2(io.in5)
+io.t5_3out := twiddle5_3(io.in5)
+io.t5_4out := twiddle5_4(io.in5)
 
 
 
@@ -175,7 +176,12 @@ io.t5_4out := twiddle5_4(io.in)
 class twiddleLUTtest (c: twiddleLUT) extends Tester (c) {
 
 
-poke(c.io.in, 2)
+poke(c.io.in4, 2)
+
+poke(c.io.in5, 2)
+
+poke(c.io.in3, 2)
+
 //poke(c.io.x4.imag, x4_imag)
 
 
