@@ -18,12 +18,12 @@ val io = new Bundle {
   }
 
 
-val qout_vec = Vec(Array(UInt(2), UInt(0), UInt(1), UInt(0), UInt(2), UInt(0), UInt(2), UInt(0), UInt(2), UInt(2), UInt(1), UInt(0), UInt(1), UInt(0), UInt(20), UInt(0), UInt(1), UInt(1), UInt(5), UInt(0), UInt(4), UInt(2), UInt(2), UInt(0), UInt(10), UInt(0), UInt(3), UInt(2), UInt(7), UInt(0), UInt(2), UInt(2), UInt(20), UInt(0), UInt(2), UInt(1), UInt(1), UInt(0), UInt(5), UInt(0), UInt(4), UInt(1), UInt(3), UInt(20), UInt(8), UInt(0), UInt(1), UInt(1), UInt(10), UInt(0), UInt(1), UInt(5), UInt(2), UInt(0), UInt(16), UInt(0), UInt(9), UInt(2), UInt(2), UInt(2), UInt(182), UInt(0), UInt(4), UInt(10), UInt(4), UInt(0), UInt(13), UInt(2), UInt(5), UInt(0), UInt(1), UInt(0), UInt(0), UInt(0), UInt(0), UInt(0), UInt(0), UInt(0), UInt(0), UInt(0), UInt(0), UInt(0), UInt(0), UInt(0)))
+val qout_vec = Vec(Array(UInt(0), UInt(2), UInt(0), UInt(1), UInt(0), UInt(2), UInt(0), UInt(2), UInt(2), UInt(2), UInt(0), UInt(1), UInt(0), UInt(1), UInt(0), UInt(20), UInt(1), UInt(1), UInt(0), UInt(5), UInt(4), UInt(2), UInt(0), UInt(2), UInt(0), UInt(10), UInt(3), UInt(2), UInt(0), UInt(7), UInt(2), UInt(2), UInt(0), UInt(20), UInt(2), UInt(1), UInt(0), UInt(1), UInt(0), UInt(5), UInt(4), UInt(1), UInt(3), UInt(20), UInt(0), UInt(8), UInt(1), UInt(1), UInt(0), UInt(10), UInt(1), UInt(5), UInt(0), UInt(2), UInt(0), UInt(16), UInt(9), UInt(2), UInt(2), UInt(2), UInt(0), UInt(182), UInt(4), UInt(10), UInt(0), UInt(4), UInt(13), UInt(2), UInt(0), UInt(5), UInt(0), UInt(1), UInt(0), UInt(0), UInt(0), UInt(0), UInt(0), UInt(0), UInt(0), UInt(0), UInt(0), UInt(0), UInt(0), UInt(0)))
 
 
 val index = io.ina*UInt(2)
 
-when (io.inb===UInt(0){
+when (io.inb===UInt(0)){
 
 io.qout := qout_vec(index)
 
@@ -47,7 +47,7 @@ poke(c.io.inb, 0)
 
 step(1)
 
-expect(c.io.qout, 17)
+expect(c.io.qout, 2)
 
 
 

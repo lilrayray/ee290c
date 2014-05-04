@@ -23,7 +23,7 @@ val qin_vec = Vec(Array(UInt(1), UInt(0), UInt(5), UInt(0), UInt(3), UInt(0), UI
 
 val index = io.ina*UInt(2)
 
-when (io.inb===UInt(0){
+when (io.inb===UInt(0)){
 
 io.qin := qin_vec(index)
 
