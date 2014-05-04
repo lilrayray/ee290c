@@ -23,8 +23,14 @@ object Work {
 
 
     //these two are for the twiddle lut
-    val res = chiselMainTest( args.slice(1, args.length), () => Module ( new twiddleLUT(params) ) ) {
-      c => new twiddleLUTtest(c) }
+    //val res = chiselMainTest( args.slice(1, args.length), () => Module ( new twiddleLUT(params) ) ) {
+    //  c => new twiddleLUTtest(c) }
+
+
+    //these two are for the power lut
+    val res = chiselMainTest( args.slice(1, args.length), () => Module ( new powerLUT ) ) {
+      c => new powerLUTtest(c) }
+
 
 
   } 
