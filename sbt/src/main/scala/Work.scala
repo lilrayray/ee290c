@@ -22,14 +22,14 @@ object Work {
 
 
 
-    //these two are for the twiddle lut
+    //these two are for the twiddle lut want params is the scaling factor!
     //val res = chiselMainTest( args.slice(1, args.length), () => Module ( new twiddleLUT(params) ) ) {
     //  c => new twiddleLUTtest(c) }
 
 
     //these two are for lut testing, change name power/r5ic/4/3/qin/qout
-    val res = chiselMainTest( args.slice(1, args.length), () => Module ( new r3icLUT ) ) {
-      c => new r3icLUTtest(c) }
+    val res = chiselMainTest( args.slice(1, args.length), () => Module ( new coprime5LUT ) ) {
+      c => new coprime5LUTtest(c) }
 
 
 
