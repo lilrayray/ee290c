@@ -1,0 +1,324 @@
+when (phase === UInt(1)){
+
+ when (bank0 === UInt(0)) {
+     addrBank0a := addr0
+ } .elsewhen (bank1 === UInt(0)) {
+     addrBank0a := addr1
+ } .elsewhen (bank2 === UInt(0)) {
+     addrBank0a := addr2
+ } .elsewhen (bank3 === UInt(0)) {
+     addrBank0a := addr3
+ } .elsewhen (bank4 === UInt(0)) {
+     addrBank0a := addr4
+ } .otherwise {
+     addrBank0a := addrIO
+ }
+
+ when (bank0 === UInt(1)) {
+     addrBank1a := addr0
+ } .elsewhen (bank1 === UInt(1)) {
+     addrBank1a := addr1
+ } .elsewhen (bank2 === UInt(1)) {
+     addrBank1a := addr2
+ } .elsewhen (bank3 === UInt(1)) {
+     addrBank1a := addr3
+ } .elsewhen (bank4 === UInt(1)) {
+     addrBank1a := addr4
+ } .otherwise {
+     addrBank1a := addrIO
+ }
+
+ when (bank0 === UInt(2)) {
+     addrBank2a := addr0
+ } .elsewhen (bank1 === UInt(2)) {
+     addrBank2a := addr1
+ } .elsewhen (bank2 === UInt(2)) {
+     addrBank2a := addr2
+ } .elsewhen (bank3 === UInt(2)) {
+     addrBank2a := addr3
+ } .elsewhen (bank4 === UInt(2)) {
+     addrBank2a := addr4
+ } .otherwise {
+     addrBank2a := addrIO
+ }
+
+
+
+ when (bank0 === UInt(3)) {
+     addrBank3a := addr0
+ } .elsewhen (bank1 === UInt(3)) {
+     addrBank3a := addr1
+ } .elsewhen (bank2 === UInt(3)) {
+     addrBank3a := addr2
+ } .elsewhen (bank3 === UInt(3)) {
+     addrBank3a := addr3
+ } .elsewhen (bank4 === UInt(3)) {
+     addrBank3a := addr4
+ } .otherwise {
+     addrBank3a := addrIO
+ }
+
+ when (bank0 === UInt(4)) {
+     addrBank4a := addr0
+ } .elsewhen (bank1 === UInt(4)) {
+     addrBank4a := addr1
+ } .elsewhen (bank2 === UInt(4)) {
+     addrBank4a := addr2
+ } .elsewhen (bank3 === UInt(4)) {
+     addrBank4a := addr3
+ } .elsewhen (bank4 === UInt(4)) {
+     addrBank4a := addr4
+ } .otherwise {
+     addrBank4a := addrIO
+ }
+
+} .otherwise {  //the otherwise is when phase=0
+
+ when (bank0 === UInt(0)) {
+     addrBank0b := addr0
+ } .elsewhen (bank1 === UInt(0)) {
+     addrBank0b := addr1
+ } .elsewhen (bank2 === UInt(0)) {
+     addrBank0b := addr2
+ } .elsewhen (bank3 === UInt(0)) {
+     addrBank0b := addr3
+ } .elsewhen (bank4 === UInt(0)) {
+     addrBank0b := addr4
+ } .otherwise {
+     addrBank0b := addrIO
+ }
+
+                      
+ when (bank0 === UInt(1)) {
+     addrBank1b := addr0
+ } .elsewhen (bank1 === UInt(1)) {
+     addrBank1b := addr1
+ } .elsewhen (bank2 === UInt(1)) {
+     addrBank1b := addr2
+ } .elsewhen (bank3 === UInt(1)) {
+     addrBank1b := addr3
+ } .elsewhen (bank4 === UInt(1)) {
+     addrBank1b := addr4
+ } .otherwise {
+     addrBank1b := addrIO
+ }
+
+ when (bank0 === UInt(2)) {
+     addrBank2b := addr0
+ } .elsewhen (bank1 === UInt(2)) {
+     addrBank2b := addr1
+ } .elsewhen (bank2 === UInt(2)) {
+     addrBank2b := addr2
+ } .elsewhen (bank3 === UInt(2)) {
+     addrBank2b := addr3
+ } .elsewhen (bank4 === UInt(2)) {
+     addrBank2b := addr4
+ } .otherwise {
+     addrBank2b := addrIO
+ }
+
+ when (bank0 === UInt(3)) {
+     addrBank3b := addr0
+ } .elsewhen (bank1 === UInt(3)) {
+     addrBank3b := addr1
+ } .elsewhen (bank2 === UInt(3)) {
+     addrBank3b := addr2
+ } .elsewhen (bank3 === UInt(3)) {
+     addrBank3b := addr3
+ } .elsewhen (bank4 === UInt(3)) {
+     addrBank3b := addr4
+ } .otherwise {
+     addrBank3b := addrIO
+ }
+
+ when (bank0 === UInt(4)) {
+     addrBank4b := addr0
+ } .elsewhen (bank1 === UInt(4)) {
+     addrBank4b := addr1
+ } .elsewhen (bank2 === UInt(4)) {
+     addrBank4b := addr2
+ } .elsewhen (bank3 === UInt(4)) {
+     addrBank4b := addr3
+ } .elsewhen (bank4 === UInt(4)) {
+     addrBank4b := addr4
+ } .otherwise {
+     addrBank4b := addrIO
+ }
+ 
+}
+                   
+
+                            
+x0a := memoryFFTa1(addrBank0a+1)
+
+x1a := memoryFFTa2(addrBank1a+1)
+
+x2a := memoryFFTa3(addrBank2a+1)
+
+x3a := memoryFFTa4(addrBank3a+1)
+
+x4a := memoryFFTa5(addrBank4a+1)
+
+x0b := memoryFFTb1(addrBank0b+1)
+                            
+x1b := memoryFFTb2(addrBank1b+1)
+
+x2b := memoryFFTb3(addrBank2b+1)
+
+x3b := memoryFFTb4(addrBank3b+1)
+
+x4b := memoryFFTb5(addrBank4b+1)
+
+ 
+when (phase === UInt(0)) {
+
+ when (bank0 === UInt(0)){
+     x0 := x0b
+ } .elsewhen (bank0 === UInt(1)){
+     x0 := x1b
+ } .elsewhen (bank0 === UInt(2)){
+     x0 := x2b
+ } .elsewhen (bank0 === UInt(3)){
+     x0 := x3b
+ } .otherwise {
+     x0 := x4b
+ }
+
+} .otherwise {  //otherwise means phase is 1                          
+
+ when (bank0 === UInt(0)){
+     x0 := x0a
+ } .elsewhen (bank0 === UInt(1)){
+     x0 := x1a
+ } .elsewhen (bank0 === UInt(2)){
+     x0 := x2a
+ } .elsewhen (bank0 === UInt(3)){
+     x0 := x3a
+ } .otherwise {
+     x0 := x4a
+ }
+
+}
+
+when (phase === UInt(0)) {
+
+ when (bank1 === UInt(0)){
+     x1 := x0b
+ } .elsewhen (bank1 === UInt(1)){
+     x1 := x1b
+ } .elsewhen (bank1 === UInt(2)){
+     x1 := x2b
+ } .elsewhen (bank1 === UInt(3)){
+     x1 := x3b
+ } .otherwise {
+     x1 := x4b
+ }
+
+} .otherwise {  //otherwise means phase is 1                          
+
+ when (bank1 === UInt(0)){
+     x1 := x0a
+ } .elsewhen (bank1 === UInt(1)){
+     x1 := x1a
+ } .elsewhen (bank1 === UInt(2)){
+     x1 := x2a
+ } .elsewhen (bank1 === UInt(3)){
+     x1 := x3a
+ } .otherwise {
+     x1 := x4a
+ }
+
+}
+
+when (phase === UInt(0)) {
+
+ when (bank2 === UInt(0)){
+     x2 := x0b
+ } .elsewhen (bank2 === UInt(1)){
+     x2 := x1b
+ } .elsewhen (bank2 === UInt(2)){
+     x2 := x2b
+ } .elsewhen (bank2 === UInt(3)){
+     x2 := x3b
+ } .otherwise {
+     x2 := x4b
+ }
+
+} .otherwise {  //otherwise means phase is 1                          
+
+ when (bank2 === UInt(0)){
+     x2 := x0a
+ } .elsewhen (bank2 === UInt(1)){
+     x2 := x1a
+ } .elsewhen (bank2 === UInt(2)){
+     x2 := x2a
+ } .elsewhen (bank2 === UInt(3)){
+     x2 := x3a
+ } .otherwise {
+     x2 := x4a
+ }
+
+}
+
+when (phase === UInt(0)) {
+
+ when (bank3 === UInt(0)){
+     x3 := x0b
+ } .elsewhen (bank3 === UInt(1)){
+     x3 := x1b
+ } .elsewhen (bank3 === UInt(2)){
+     x3 := x2b
+ } .elsewhen (bank3 === UInt(3)){
+     x3 := x3b
+ } .otherwise {
+     x3 := x4b
+ }
+
+} .otherwise {  //otherwise means phase is 1                          
+
+ when (bank3 === UInt(0)){
+     x3 := x0a
+ } .elsewhen (bank3 === UInt(1)){
+     x3 := x1a
+ } .elsewhen (bank3 === UInt(2)){
+     x3 := x2a
+ } .elsewhen (bank3 === UInt(3)){
+     x3 := x3a
+ } .otherwise {
+     x3 := x4a
+ }
+
+}
+
+ 
+
+when (phase === UInt(0)) {
+
+ when (bank4 === UInt(0)){
+     x4 := x0b
+ } .elsewhen (bank4 === UInt(1)){
+     x4 := x1b
+ } .elsewhen (bank4 === UInt(2)){
+     x4 := x2b
+ } .elsewhen (bank4 === UInt(3)){
+     x4 := x3b
+ } .otherwise {
+     x4 := x4b
+ }
+
+} .otherwise {  //otherwise means phase is 1                          
+
+ when (bank4 === UInt(0)){
+     x4 := x0a
+ } .elsewhen (bank4 === UInt(1)){
+     x4 := x1a
+ } .elsewhen (bank4 === UInt(2)){
+     x4 := x2a
+ } .elsewhen (bank4 === UInt(3)){
+     x4 := x3a
+ } .otherwise {
+     x4 := x4a
+ }
+
+}
+
