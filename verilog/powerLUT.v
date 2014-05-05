@@ -1,15 +1,27 @@
 module powerLUT(
-    input [5:0] io_fftsize,
-    input [2:0] io_power,
-    output[2:0] io_power4235
+    input [5:0] io_fftindex,
+    output[2:0] io_power4235_0,
+    output[2:0] io_power4235_1,
+    output[2:0] io_power4235_2,
+    output[2:0] io_power4235_3
 );
 
   wire[2:0] T0;
   reg [2:0] T1 [167:0];
   wire[7:0] T2;
+  wire[8:0] T3;
+  wire[8:0] index;
+  wire[2:0] T4;
+  wire[7:0] T5;
+  wire[8:0] T6;
+  wire[2:0] T7;
+  wire[7:0] T8;
+  wire[8:0] T9;
+  wire[2:0] T10;
+  wire[7:0] T11;
 
 
-  assign io_power4235 = T0;
+  assign io_power4235_3 = T0;
 `ifndef SYNTHESIS
   assign T0 = T2 >= 8'ha8 ? {1{$random}} : T1[T2];
 `else
@@ -185,6 +197,31 @@ module powerLUT(
     T1[166] = 3'h0;
     T1[167] = 3'h0;
   end
-  assign T2 = {2'h0, io_fftsize};
+  assign T2 = T3[3'h7:1'h0];
+  assign T3 = index + 9'h3;
+  assign index = io_fftindex * 3'h4;
+  assign io_power4235_2 = T4;
+`ifndef SYNTHESIS
+  assign T4 = T5 >= 8'ha8 ? {1{$random}} : T1[T5];
+`else
+  assign T4 = T1[T5];
+`endif
+  assign T5 = T6[3'h7:1'h0];
+  assign T6 = index + 9'h2;
+  assign io_power4235_1 = T7;
+`ifndef SYNTHESIS
+  assign T7 = T8 >= 8'ha8 ? {1{$random}} : T1[T8];
+`else
+  assign T7 = T1[T8];
+`endif
+  assign T8 = T9[3'h7:1'h0];
+  assign T9 = index + 9'h1;
+  assign io_power4235_0 = T10;
+`ifndef SYNTHESIS
+  assign T10 = T11 >= 8'ha8 ? {1{$random}} : T1[T11];
+`else
+  assign T10 = T1[T11];
+`endif
+  assign T11 = index[3'h7:1'h0];
 endmodule
 
