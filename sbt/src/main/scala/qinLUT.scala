@@ -13,8 +13,8 @@ import scala.math._
 class qinLUT () extends Module {
 val io = new Bundle {
   val ina = UInt(INPUT, 6)
-  val inb = UInt(INPUT, 3)  
-  val qin = UInt(OUTPUT, 9)
+  //val inb = UInt(INPUT, 3)  
+  val qin = Vec.fill(2) {UInt(OUTPUT, 9)}
   }
 
 
@@ -23,15 +23,10 @@ val qin_vec = Vec(Array(UInt(1), UInt(0), UInt(5), UInt(0), UInt(3), UInt(0), UI
 
 val index = io.ina*UInt(2)
 
-when (io.inb===UInt(0)){
 
-io.qin := qin_vec(index)
 
-} .otherwise{
+io.qin := Vec(qin_vec(index), qin_vec(index+UInt(1)))
 
-io.qin := qin_vec(index+UInt(1))
-
-}
 
 
 }
@@ -42,12 +37,13 @@ io.qin := qin_vec(index+UInt(1))
 class qinLUTtest (c: qinLUT) extends Tester (c) {
 
 
-poke(c.io.ina, 29)
-poke(c.io.inb, 0)
+poke(c.io.ina, 41)
+//poke(c.io.inb, 0)
 
 step(1)
 
-expect(c.io.qin, 17)
+expect(c.io.qin(0), 0)
+expect(c.io.qin(1), 0)
 
 
 

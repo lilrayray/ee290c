@@ -28,8 +28,8 @@ object Work {
 
 
     //these two are for lut testing, change name power/r5ic/4/3/qin/qout
-    val res = chiselMainTest( args.slice(1, args.length), () => Module ( new GMRCtrl ) ) {
-      c => new GMRCtrlTest(c) }
+    val res = chiselMainTest( args.slice(1, args.length), () => Module ( new powerLUT ) ) {
+      c => new powerLUTtest(c) }
 
 
 

@@ -13,8 +13,8 @@ import scala.math._
 class qoutLUT () extends Module {
 val io = new Bundle {
   val ina = UInt(INPUT, 6)
-  val inb = UInt(INPUT, 3)  
-  val qout = UInt(OUTPUT, 9)
+  //val inb = UInt(INPUT, 3)  
+  val qout = Vec.fill(2){UInt(OUTPUT, 9)}
   }
 
 
@@ -23,15 +23,8 @@ val qout_vec = Vec(Array(UInt(0), UInt(2), UInt(0), UInt(1), UInt(0), UInt(2), U
 
 val index = io.ina*UInt(2)
 
-when (io.inb===UInt(0)){
+io.qout := Vec(qout_vec(index), qout_vec(index+UInt(1)))
 
-io.qout := qout_vec(index)
-
-} .otherwise{
-
-io.qout := qout_vec(index+UInt(1))
-
-}
 
 
 }
@@ -42,13 +35,13 @@ io.qout := qout_vec(index+UInt(1))
 class qoutLUTtest (c: qoutLUT) extends Tester (c) {
 
 
-poke(c.io.ina, 29)
-poke(c.io.inb, 0)
+poke(c.io.ina, 12)
+//poke(c.io.inb, 0)
 
 step(1)
 
-expect(c.io.qout, 2)
-
+expect(c.io.qout(0), 0)
+expect(c.io.qout(1), 10)
 
 
 }
