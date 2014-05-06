@@ -1,0 +1,153 @@
+val sumn1n2 = UInt(width=4)
+val sumn3n4 = UInt(width=4)
+val sumn5n6 = UInt(width=4)
+val sumnanb = UInt(width=4)
+val sumncnd = UInt(width=4)
+
+sumn1n2 := n1C+n2C
+sumn3n4 := n3C+n4C
+sumn5n6 := n5C+n6C
+sumnanb := bankIa+bankIb
+sumncnd := bankIc+bankId
+
+
+val Mod12 = Module(new modN(4))
+
+Mod12.io.address := sumn1n2
+Mod12.io.N := maxradix
+bankIa := Mod12.io.output
+
+val Mod34 = Module(new modN(4))
+
+Mod34.io.address := sumn3n4
+Mod34.io.N := maxradix
+bankIb := Mod34.io.output
+
+val Mod56 = Module(new modN(4))
+
+Mod56.io.address := sumn5n6
+Mod56.io.N := maxradix
+bankIc := Mod56.io.output
+
+val Modab = Module(new modN(4))
+
+Modab.io.address := sumnanb
+Modab.io.N := maxradix
+bankId := Mod1ab.io.output
+
+val Modcd = Module(new modN(4))
+
+Modcd.io.address := sumncnd
+Modcd.io.N := maxradix
+bankI := Mod1cd.io.output
+
+
+
+val prodIO1 = addressConstant(0)*n1C
+val prodIO2 = addressConstant(1)*n2C
+val prodIO3 = addressConstant(2)*n3C
+val prodIO4 = addressConstant(3)*n4C
+val prodIO5 = addressConstant(4)*n5C
+val prodIO6 = addressConstant(5)*n6C
+
+val sumIO1 = prodIO1 + prodIO2
+val sumIO1 = prodIO3 + prodIO4
+val sumIO1 = prodIO5 + prodIO6
+val sumIO1 = sumIO1 + sumIO2
+val addrIO = sumIO3 + sumIO4
+
+val suma0b = UInt(width=4)
+val sumc0d = UInt(width=4)
+
+val sumb01 = UInt(width=4)
+val sumb02 = UInt(width=4)
+val sumb03 = UInt(width=4)
+val sumb04 = UInt(width=4)
+
+
+suma0b := bank0a + bank0b
+sumc0d := bank0c + bank0d
+sumb01 := bank0 + UInt(1)
+sumb02 := bank0 + UInt(2)
+sumb03 := bank0 + UInt(3)
+sumb04 := bank0 + UInt(4)
+
+
+
+val Mod0a = Module(new modN(4))
+
+Mod0a.io.address := sumn1n2
+Mod0a.io.N := maxradix
+bank0a := Mod0a.io.output
+
+
+val Mod0b = Module(new modN(4))
+
+Mod0b.io.address := sumn3n4
+Mod0b.io.N := maxradix
+bank0b := Mod0b.io.output
+
+
+val Mod0c = Module(new modN(4))
+
+Mod0c.io.address := sumn5n6
+Mod0c.io.N := maxradix
+bank0c := Mod0c.io.output
+
+val Mod0d = Module(new modN(4))
+
+Mod0d.io.address := suma0b
+Mod0d.io.N := maxradix
+bank0d := Mod0d.io.output
+
+val Mod0 = Module(new modN(4))
+
+Mod0.io.address := sumc0d
+Mod0.io.N := maxradix
+bank0 := Mod0.io.output
+
+val Mod1 = Module(new modN(4))
+
+Mod1.io.address := sumb01
+Mod1.io.N := maxradix
+bank1 := Mod1.io.output
+
+val Mod2 = Module(new modN(4))
+
+Mod2.io.address := sumb02
+Mod2.io.N := maxradix
+bank2 := Mod2.io.output
+
+val Mod3 = Module(new modN(4))
+
+Mod3.io.address := sumb03
+Mod3.io.N := maxradix
+bank3 := Mod3.io.output
+
+val Mod4 = Module(new modN(4))
+
+Mod4.io.address := sumb04
+Mod4.io.N := maxradix
+bank4 := Mod4.io.output
+
+
+
+
+val prod01 = addressConstant(0)*n1C
+val prod02 = addressConstant(1)*n2C
+val prod03 = addressConstant(2)*n3C
+val prod04 = addressConstant(3)*n4C
+val prod05 = addressConstant(4)*n5C
+val prod06 = addressConstant(5)*n6C
+
+val sum01 = prod01 + prod02
+val sum02 = prod03 + prod04
+val sum03 = prod05 + prod06
+val sum04 = sum01 + sum02
+val addr0 = sum03 + sum04
+val addr1 = addr0 + addressConstant(currentStage+UInt(1))
+val addr2 = addr1 + addressConstant(currentStage+UInt(1))
+val addr3 = addr2 + addressConstant(currentStage+UInt(1))
+val addr4 = addr3 + addressConstant(currentStage+UInt(1))
+
+

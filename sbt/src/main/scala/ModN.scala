@@ -22,31 +22,49 @@ val io = new Bundle {
        io.output := io.address
   }
 
+} //end of modN module
+
+
+class modNwrap () extends Module {
+
+val io = new Bundle {
+  val n1 = UInt(INPUT, 4)
+  val n2 = UInt(INPUT, 4)
+  val maxradix = UInt(INPUT, 4)
+  val bankIa = UInt(OUTPUT, 4)
+  
 }
 
 
-class modNtest (c: modN) extends Tester (c) {
 
-val address = rnd.nextInt(100)
-val dwidth = 16
-val N = rnd.nextInt(100)
-val sub = address - N
-var xx = 0
+val sumn1n2 = UInt(width=4)
 
-if (sub > 0){
- xx = sub
-} else{
- xx = address
-}
+sumn1n2 := io.n1+io.n2
 
-val output = xx
+val MBA = Module(new modN(4))
 
-poke(c.io.address, address)
-poke(c.io.N, N)
+MBA.io.address := sumn1n2
+MBA.io.N := io.maxradix
+io.bankIa := MBA.io.output
+
+
+
+
+
+
+} //end of modNwrapmodule
+
+
+class modNwraptest (c: modNwrap) extends Tester (c) {
+
+
+poke(c.io.n1, 2)
+poke(c.io.n2, 3)
+poke(c.io.maxradix, 6)
 
 step(1)
 
-expect(c.io.output, output)
+expect(c.io.bankIa, 5)
 
 
 }
